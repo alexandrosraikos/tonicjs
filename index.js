@@ -1,1 +1,5 @@
-
+export { Binding } from './src/model/binding'
+export { Modal } from './src/components/modal'
+export { notify } from './src/functions/base'
+export { CommunicationController } from './src/controllers/communication-controller'
+export { InteractionController } from './src/controllers/interaction-controller'

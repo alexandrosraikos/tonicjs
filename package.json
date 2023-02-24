@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/doodengineering/gin/issues"
   },
-  "homepage": "https://github.com/doodengineering/gin#readme"
+  "homepage": "https://github.com/doodengineering/gin#readme",
+  "exports": {
+    ".": "./index.js"
+  }
 }
