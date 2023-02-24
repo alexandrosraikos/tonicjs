@@ -1,4 +1,4 @@
-import API from './communication-controller';
+import API from './communication-controller.js';
 
 
 /**
