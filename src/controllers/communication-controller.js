@@ -1,5 +1,5 @@
 
-import {notify} from '../functions/base';
+import {notify} from '../functions/base.js';
 
 /**
    * The communication controller.
