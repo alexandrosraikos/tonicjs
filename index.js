@@ -1,8 +1,8 @@
-import Modal from './src/components/modal'
-import API from './src/controllers/communication-controller'
-import InteractionController from './src/controllers/interaction-controller'
-import { notify } from './src/functions/base'
-import Binding from './src/model/binding'
+import Modal from './src/components/modal.js'
+import API from './src/controllers/communication-controller.js'
+import InteractionController from './src/controllers/interaction-controller.js'
+import { notify } from './src/functions/base.js'
+import Binding from './src/model/binding.js'
 
 class Gin {
     constructor() {
