@@ -9,17 +9,17 @@ class Gin {
       this.api = this.api();
       this.interface = this.interface();
     }
-  
-    binding(eventType, actionID, method) {
-        return new Binding(eventType, actionID, method)
-    }
 
-    api() {
+    static api() {
         return new API()
     }
 
-    interface() {
+    static interface() {
         return new InteractionController()
+    }
+  
+    binding(eventType, actionID, method) {
+        return new Binding(eventType, actionID, method)
     }
 
     notify(message, type = 'error', disappearing = true) {
@@ -37,4 +37,4 @@ class Gin {
     }
 }
 
-module.exports = Gin;
+export default Gin;

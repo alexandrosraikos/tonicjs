@@ -1,16 +1,19 @@
 {
   "name": "@doodengineering/gin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Tonic utility for WordPress plugin development.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/doodengineering/gin.git"
+  "repository": "https://github.com/doodengineering/gin",
+  "type": "module",
+  "funding": "https://github.com/alexandrosraikos",
+  "author": {
+    "name": "Alexandros Raikos",
+    "email": "alexandros@dood.gr",
+    "url": "https://github.com/alexandrosraikos"
   },
-  "author": "Alexandros Raikos",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/doodengineering/gin/issues"
