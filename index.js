@@ -5,9 +5,10 @@ import { notify } from './src/functions/base.js'
 import Binding from './src/model/binding.js'
 
 class Gin {
-    constructor() {
-      this.api = this.api();
-      this.interface = this.interface();
+    constructor(classSelector) {
+      this.selector = classSelector;
+      this.api = Gin.api();
+      this.interface = Gin.interface(this.selector);
     }
 
     static api() {

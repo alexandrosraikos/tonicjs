@@ -8,33 +8,37 @@
  * @param {Boolean} disappearing Whether the alert is
  * automatically disappearing.
  *
- * @author Alexandros Raikos <alexandros@araikos.gr>
+ * @author Alexandros Raikos <alexandros@dood.gr>
  */
-export function notify(message, type = 'error', disappearing = true) {
-  const iconIdentifier =
-    type === 'notice' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation';
+export function notify(classSelector, message, type = 'error', disappearing = true, includeIcon = true) {
+  let icon = '';
+  if (includeIcon) {
+    const iconIdentifier =
+      type === 'notice' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation';
+    icon = `<span class="icon fas ${iconIdentifier}"></span>`;
+  }
   const notice = `
     <div \
-      class="gin-notice gin-${type} animated absolute">
-      <span class="icon fas ${iconIdentifier}"></span>
+      class="${classSelector}-notice ${classSelector}-${type} animated absolute">
+      ${icon}
       <span>${message}</span>
     </div>
   `;
 
-  const exists = $('.gin-notice > span:last-of-type')
+  const exists = $(`.${classSelector}-notice > span:last-of-type`)
       .html() === message;
 
   if (!exists) {
     $('body').prepend(notice);
     if (disappearing) {
       setTimeout(() => {
-        $('.gin-notice.absolute').addClass('seen');
+        $(`.${classSelector}-notice.absolute`).addClass('seen');
       }, 7000);
       setTimeout(() => {
-        $('.gin-notice.absolute').addClass('dismissed');
+        $(`.${classSelector}-notice.absolute`).addClass('dismissed');
       }, 7200);
       setTimeout(() => {
-        $('.gin-notice.absolute').remove();
+        $(`.${classSelector}-notice.absolute`).remove();
       }, 7210);
     }
   }

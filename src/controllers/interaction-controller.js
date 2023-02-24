@@ -1,6 +1,5 @@
 import API from './communication-controller.js';
 
-
 /**
  * The main display controller for all interface elements.
  *
@@ -10,27 +9,23 @@ import API from './communication-controller.js';
  * @since 0.0.1
  */
 class InteractionController {
-  /**
-   * Scan the document for region ID data handlers.
-   *
-   * @return {String} The region ID or undefined.
-   */
-  static region() {
-    return $('.gin[data-region]').data('region');
+
+  constructor(classSelector) {
+    this.selector = classSelector;
   }
 
   /**
- * Attach custom event handlers from
- * the predefined bindings.
- *
- * @param {Binding} binding The binding.
- */
-  static attach(binding) {
+   * Attach custom event handlers from
+   * the predefined bindings.
+   *
+   * @param {Binding} binding The binding.
+   */
+  attach(binding) {
     // Attach handlers.
     $(document).on(
         binding.eventType,
-        `.gin *[data-action="${binding.actionID}"],\
-              .gin[data-action="${binding.actionID}"]`,
+        `.${this.selector} *[data-action="${binding.actionID}"],\
+              .${this.selector}[data-action="${binding.actionID}"]`,
         binding.method,
     );
   }
@@ -40,24 +35,23 @@ class InteractionController {
    *
    * @param {Function} action The action.
    */
-  static run(action) {
+  run(action) {
     $(function() {
       action();
     });
   }
 
   /**
-       * Make a request using the standard event handling.
-       *
-       * @param {Event} e The event.
-       * @param {String} path The API path.
-       * @param {Object|FormData} data The request data.
-       * @param {Function} completion The successful completion handler.
-       */
-  static directRequest(e, path, data, completion) {
+   * Make a request using the standard event handling.
+   *
+   * @param {Event} e The event.
+   * @param {String} path The API path.
+   * @param {Object|FormData} data The request data.
+   * @param {Function} completion The successful completion handler.
+   */
+  directRequest(e, path, data, completion) {
     e.preventDefault();
-    API
-        .request(e.currentTarget, path, data, completion);
+    API.request(e.currentTarget, path, data, completion);
   }
 }
 
