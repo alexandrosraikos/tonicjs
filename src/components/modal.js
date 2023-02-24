@@ -16,13 +16,13 @@ class Modal {
      *  and shown on hover.
      */
   constructor(
-      identifier,
+      classSelector,
       data,
       index = 0,
       completion = null,
       fullCanvas = false,
   ) {
-    this.id = identifier;
+    this.id = classSelector;
     this.data = data;
     this.index = index ?? 0;
     this.iterable = this.data.constructor === Array;
@@ -47,8 +47,7 @@ class Modal {
     // Prepare HTML.
     this.HTML = `
         <div 
-          class="gin gin-modal ${this.id} \
-            gin-hidden">
+          class="${this.id} ${this.id}-modal ${this.id}-hidden">
           <div class="backdrop"></div>
           <div class="container ${fullCanvas ? 'full-canvas' : ''}">
             ${previousButton}
@@ -72,7 +71,7 @@ class Modal {
     this.set(this.iterable ? this.data[index] : this.data);
 
     // Show modal.
-    $('.gin-modal.' + this.type).removeClass('hidden');
+    $('.'+this.id+'-modal.' + this.type).removeClass('hidden');
 
     /**
        * Listeners
@@ -105,14 +104,14 @@ class Modal {
       $(document).on(
           'click',
           // eslint-disable-next-line max-len
-          '.gin-modal button[data-action="gin_close_modal"]',
+          '.'+this.id+'-modal button[data-action="close_modal"]',
           (e) => {
             e.preventDefault();
             this.hide();
           },
       );
 
-      $('.gin-modal > .container > .close').on(
+      $('.'+this.id+'-modal> .container > .close').on(
           'click',
           (e) => {
             e.preventDefault();
@@ -120,7 +119,7 @@ class Modal {
           },
       );
 
-      $('.gin-modal > .backdrop').on('click', (e) => {
+      $('.'+this.id+'-modal> .backdrop').on('click', (e) => {
         e.preventDefault();
         this.hide();
       });
@@ -130,21 +129,6 @@ class Modal {
         if (e.key === 'Escape') this.hide();
       });
     });
-  }
-
-  /**
-     * A simple fuction to instantiate
-     * single page HTML modals.
-     *
-     * @param {String} id The modal's ID.
-     * @param {String} html The HTML to be displayed.
-     */
-  static plain(id, html) {
-    // eslint-disable-next-line
-      const _ = new Modal( 
-        id,
-        html,
-    );
   }
 
   /**
@@ -158,7 +142,7 @@ class Modal {
      * @return {jQuery} The content element reference.
      */
   content = () => {
-    return $('.gin-modal.' + this.id + ' > .container > .content');
+    return $('.'+this.id+'-modal > .container > .content');
   };
 
   /**
@@ -167,10 +151,10 @@ class Modal {
   controls = {
     previous: () => {
       return $(
-          '.gin-modal.' + this.id + ' > .container > .previous');
+        '.'+this.id+'-modal > .container > .previous');
     },
     next: () => {
-      return $('.gin-modal.' + this.id + ' > .container > .next');
+      return $('.'+this.id+'-modal > .container > .next');
     },
   };
 
@@ -184,7 +168,7 @@ class Modal {
      * @param {Event} e The event.
      */
   hide() {
-    $('.gin-modal.' + this.id).remove();
+    $('.'+this.id+'-modal').remove();
     $('html, body').css({overflow: 'auto'});
   }
 
@@ -193,7 +177,7 @@ class Modal {
      * @param {string} id The identifier of the modal
      */
   static kill(id) {
-    $('.gin-modal.' + id).remove();
+    $('.'+this.id+'-modal').remove();
     $('html, body').css({overflow: 'auto'});
   }
 

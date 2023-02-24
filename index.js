@@ -15,19 +15,19 @@ class Gin {
         return new API()
     }
 
-    static interface() {
-        return new InteractionController()
+    static interface(classSelector) {
+        return new InteractionController(classSelector)
     }
   
-    binding(eventType, actionID, method) {
+    static binding(eventType, actionID, method) {
         return new Binding(eventType, actionID, method)
     }
 
-    notify(message, type = 'error', disappearing = true) {
+    static notify(message, type = 'error', disappearing = true) {
         notify(message, type, disappearing)
     }
 
-    modal(
+    static modal(
         identifier,
         data,
         index = 0,
