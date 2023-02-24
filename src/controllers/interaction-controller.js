@@ -50,7 +50,9 @@ class InteractionController {
    * @param {Function} completion The successful completion handler.
    */
   directRequest(e, path, data, completion) {
-    e.preventDefault();
+    if (e instanceof Event) {
+      e.preventDefault();
+    }
     API.request(e.currentTarget, path, data, completion);
   }
 }
