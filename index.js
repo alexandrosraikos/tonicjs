@@ -36,6 +36,10 @@ class Gin {
     ) {
         return new Modal(identifier, data, index, completion, fullCanvas)
     }
+
+    static translate(text) {
+        return Tonic.translations[text].translations[0] || text;
+    }
 }
 
 export default Gin;

@@ -1,6 +1,6 @@
 {
   "name": "@doodengineering/gin",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A Tonic utility for WordPress plugin development.",
   "main": "index.js",
   "scripts": {
