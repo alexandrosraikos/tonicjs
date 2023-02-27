@@ -10,6 +10,7 @@ import {notify} from '../functions/base.js';
    * @since 0.0.1
    */
 class API {
+  
   /**
    * Make a WP request.
    *

@@ -1,4 +1,4 @@
-import API from './communication-controller.js';
+import Binding from '../model/binding.js'
 
 /**
  * The main display controller for all interface elements.
@@ -24,10 +24,30 @@ class InteractionController {
     // Attach handlers.
     $(document).on(
         binding.eventType,
-        `.${this.selector} *[data-action="${binding.actionID}"],\
-              .${this.selector}[data-action="${binding.actionID}"]`,
+        `.${this.selector} *[data-tonic-action-id="${binding.actionID}"],\
+              .${this.selector}[data-tonic-action-id="${binding.actionID}"]`,
         binding.method,
     );
+  }
+    
+  /**
+   * Attach multiple bindings.
+   * 
+   * @param {Object} actions 
+   * @param {Tonic} controller 
+   * @returns 
+   */
+  do(actions, controller) {
+    Object.keys(actions).forEach((action) => {
+        this.attach(
+            new Binding(
+              $('*[data-tonic-action-id="'+this.selector+'-'+action+'"]').data('tonic-event'),
+              this.selector+'-'+action,
+              e => actions[action](e, controller)
+          )
+        )
+    })
+    return;
   }
 
   /**
@@ -39,21 +59,6 @@ class InteractionController {
     $(function() {
       action();
     });
-  }
-
-  /**
-   * Make a request using the standard event handling.
-   *
-   * @param {Event} e The event.
-   * @param {String} path The API path.
-   * @param {Object|FormData} data The request data.
-   * @param {Function} completion The successful completion handler.
-   */
-  directRequest(e, path, data, completion) {
-    if (e instanceof Event) {
-      e.preventDefault();
-    }
-    API.request(e.currentTarget, path, data, completion);
   }
 }
 
