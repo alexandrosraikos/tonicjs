@@ -1,6 +1,6 @@
 # 🔃 TonicJS
 
-The TonicJS framework is a collection of tools and utilities to help you build WordPress plugins and themes using the [Tonic](https://www.github.com/doodengineering/tonic) framework.
+The TonicJS package is a collection of tools and utilities to help you build WordPress plugins and themes using the [Tonic](https://www.github.com/doodengineering/tonic) framework.
 
 [![DeepSource](https://deepsource.io/gh/doodengineering/tonicjs.svg/?label=active+issues&show_trend=true&token=4mtKso3dpJ6x4Je0M7P6dtox)](https://deepsource.io/gh/doodengineering/tonicjs/?ref=repository-badge)
 
@@ -19,7 +19,15 @@ _This boilerplate will be available soon._
 To get started, simply include it in your WordPress plugin or theme build process.
 
 ```sh
-npm install @doodengineering/tonicjs
+npm install doodengineering/tonicjs
+```
+
+and then import the package in your code.
+
+```js
+import { Tonic } from '@doodengineering/tonicjs';
+
+const controller = new Tonic();
 ```
 
 ## Documentation
