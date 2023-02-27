@@ -28,7 +28,7 @@ class API {
    * @author Alexandros Raikos <alexandros@dood.gr>
    * @since 1.0.0
    */
-  static request(
+  request(
       trigger,
       path,
       data,

@@ -37,13 +37,14 @@ class InteractionController {
    * @param {Tonic} controller 
    * @returns 
    */
-  do(actions, controller) {
-    Object.keys(actions).forEach((action) => {
+  do(controller, actions) {
+    actions.forEach((action) => {
+        const actionID = this.selector +'-' + Object.keys(action)[0];
         this.attach(
             new Binding(
-              $('*[data-tonic-action-id="'+this.selector+'-'+action+'"]').data('tonic-event'),
-              this.selector+'-'+action,
-              e => actions[action](e, controller)
+              $('*[data-tonic-action-id="'+actionID+'"]').data('tonic-event'),
+              actionID,
+              e => action[Object.keys(action)[0]](e, controller)
           )
         )
     })

@@ -51,8 +51,8 @@ class Tonic {
      * @memberof Tonic
      * @returns {void}
      */
-    do(actions) {
-        this.#interface.do(actions, this);
+    do(...actions) {
+        this.#interface.do(this, actions);
     }
 
     /**
