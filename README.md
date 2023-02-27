@@ -16,7 +16,7 @@ _This boilerplate will be available soon._
 
 ### Manually
 
-To get started, simply include it in your WordPress plugin or theme composer file.
+To get started, simply include it in your WordPress plugin or theme build process.
 
 ```sh
 npm install @doodengineering/tonicjs
