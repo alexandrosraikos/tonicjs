@@ -10,7 +10,13 @@
  *
  * @author Alexandros Raikos <alexandros@dood.gr>
  */
-export function notify(classSelector, message, type = 'error', disappearing = true, includeIcon = true) {
+export function notify(
+  classSelector,
+  message,
+  type = 'error',
+  disappearing = true,
+  includeIcon = true
+) {
   let icon = '';
   if (includeIcon) {
     const iconIdentifier =

@@ -7,9 +7,27 @@ import {notify} from '../functions/base.js';
    * This class provides properties and methods to interact with the
    * WordPress installation.
    *
-   * @since 0.0.1
+   * @since 1.0.0
    */
 class API {
+
+  /**
+   * The identifier of the controller.
+   * @type {String}
+   * @since 1.1.3
+   * @access private
+   */
+  #identifier;
+
+  /**
+   * The constructor.
+   * @param {String} identifier The identifier of the controller.
+   * @since 1.1.3
+   * @access public
+   */
+  constructor(identifier) {
+    this.#identifier = identifier;
+  }
   
   /**
    * Make a WP request.
@@ -47,7 +65,8 @@ class API {
       $(trigger).removeClass('loading');
     }).fail((response) => {
       notify(
-          response.responseJSON.message,
+          this.#identifier,
+          response.responseText,
           'error',
       );
       $(trigger).removeClass('loading');
