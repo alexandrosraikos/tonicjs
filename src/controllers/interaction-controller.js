@@ -21,13 +21,22 @@ class InteractionController {
    * @param {Binding} binding The binding.
    */
   attach(binding) {
-    // Attach handlers.
-    $(document).on(
-        binding.eventType,
-        `.${this.selector} *[data-tonic-action-id="${binding.actionID}"],\
-              .${this.selector}[data-tonic-action-id="${binding.actionID}"]`,
+    const selector = `.${this.selector} *[data-tonic-action-id="${binding.actionID}"],\
+    .${this.selector}[data-tonic-action-id="${binding.actionID}"]`;
+
+    const attach = (customEvent) => $(document).on(
+        customEvent ?? binding.eventType,
+        selector,
         binding.method,
     );
+
+    if (binding.eventType === 'lazy') {
+      attach('tonicjs-lazy');
+      $(selector).trigger('tonicjs-lazy');
+    } else {
+      // Attach handlers.
+      attach();
+    }
   }
     
   /**
